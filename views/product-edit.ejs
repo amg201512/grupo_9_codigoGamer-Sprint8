@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <%- include('./partial/head')%>
+
+<body>
+
+    <%- include('./partial/header')%>  
+
+    <section class="section-product-form">
+
+        <form action="/product-edit/<%=productToEdit.id%>?_method=PUT" enctype="multipart/form-data" method="POST" class="product-form">
+
+            <h2>Edición de Productos</h2>
+            <div class="name-images-container">
+                <div class="product_name-container">
+                    <span>Nombre de Producto</span><br>
+                    <div class="product_name-container_input">
+                        <label for="name" id="input-product_name" >Ingrese el Nombre del Producto</label>
+                        <input type="text" name="name" id="name" class="product-controller" value="<%=productToEdit.name%>">
+                    </div>
+                </div>
+                <div class="product-form-images">
+                    <span class="titulo-imagenes">Imágenes del Producto</span>
+                    <div class="img-button-container">
+                    <div class="img_loader-box">
+                        <input class="upload-img-button" type="file" name="photo1" accept=".jpg"  multiple>
+                        <input class="upload-img-button" type="file" name="photo2" accept=".jpg"  multiple>
+                    </div>
+                    <div class="img_loader-box">
+                        <input class="upload-img-button" type="file" name="photo3" accept=".jpg"  multiple>
+                    </div>      
+                    </div>
+                </div>
+            </div>
+
+            <div class="catg-container">
+                <span>Categoría del Producto</span>
+                <div class="catg-container_catg">
+                    <label for="catg" class="catg-label">Seleccione la Categoría</label>
+                    <select name="catg" id="categoria" placeholder="Categorías" class="product-controller">
+                        <option class="catg-option" disabled selected><%=productToEdit.category.name%></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="product-description">
+                <span>Descripción de Producto</span><br>
+                <textarea name="description" id="product-description_description"
+                    class="product-controller"  placeholder="Ingrese la descripción del producto...."><%=productToEdit.description%> </textarea>
+            </div>
+            <section class="price-stock_container">
+                <div class="product-stock">
+                    <span>Stock de Producto</span><br>
+                    <div class="product_stock-container_input">
+                        <label for="product-stock">Ingrese cantidad en Stock </label>
+                        <input type="number" id="product-stock" name="stock" min="1" max="100"
+                            class="product-controller" placeholder="0" value="<%=productToEdit.stock%>">
+                    </div>
+                </div>
+                <div class="product-price">
+                    <span>Precio de Producto</span><br>
+                    <div class="product_price-container_input">
+                        <label for="price">Ingrese precio del Producto</label>
+                        <input type="text" name="price" id="price" class="product-controller" value="<%=productToEdit.price%>" placeholder=" $ 0">
+                    </div>
+                </div>
+            </section>
+            <section class="shipping-discount_container">
+                <div class="product-shipping_container">
+                    <span>Envio Gratis</span><br>
+                    <div class="prueba-prueba" id="yes" >
+                        <div class="free-shipping-container">
+                            <div class="prueba-prueba-edit" id="yes" >
+                                <input type="checkbox" name="shipping" id="switch" value="1"/> 
+                                <label for="switch" id="switch-label">
+                                    <span id="handle"><i class="fas fa-circle"></i></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-discount_container">
+                    <span>Descuento</span><br>
+                    <div class="prueba-prueba" id="yes" >
+                        <div class="discount-container">
+                            <div class="prueba-prueba" id="yes" >
+                                <input type="checkbox" name="discount" id="dis-switch" value="1"/> 
+                                <label for="dis-switch" id="dis-switch-label">
+                                    <span id="handle"><i class="fas fa-circle"></i></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product_name-container_input">
+                        <label for="discount-per" id="product-discount-per">Porcentaje de Descuento</label>
+                        <input type="text" name="discountAply" id="discount-per" class="product-controller" 
+                        value="<%=productToEdit.discountAply%>" placeholder="ingrese %">
+                    </div>
+                </div>
+            </section>
+            <div class="button-container-edit">
+                <input class="button" type="reset" value="Limpiar" />
+                
+            </div>
+           <div class="button-container-edit" id="publish">
+                <input class="button" type="submit" value="PUBLICAR" id="publish-product" />
+            </div> 
+        </form>
+    </section>
+
+    <%- include('./partial/footer')%> 
+
+</body>
+
+</html>

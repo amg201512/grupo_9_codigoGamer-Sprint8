@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partial/head')%>
+
+    <body>
+
+        <%- include('./partial/header')%>
+
+            <main class="product-detail_root">
+                <a href="/store/<%=sproduct.category.id%>" class="back-to-store"> <<< Voler al listado </a>
+                <p class="product-detail-carrusel_best-seller">MAS VENDIDO</p>
+                <section class="product-detail-container">
+                    
+                    
+                    <section class="product-detail_image-container">
+                        <p class="product-detail_image-container_product-title"><%= sproduct.name%></p>
+                        
+                        
+                        <div class="image-carrusel">
+                            
+                            
+                            <div class="image-carrusel_main-img">
+                                <img id="img1" src="/images/<%= sproduct.photo1%>" alt="">
+                                <img id="img2" src="/images/<%= sproduct.photo2%>" alt="">
+                                <img id="img3" src="/images/<%= sproduct.photo3%>" alt="">
+                                <i class="fa fa-heart"></i>
+                            <% if(locals.session){ %>
+                                <% if(locals.session.userType !== "Cliente"){ %>    
+                            <button class="product-detail_product-edit-button"><a href="/product-edit/<%=sproduct.id %>"><i
+                                        class="fas fa-pencil-alt"></i></a></button>
+                                <%}%>
+                            <%}%>
+                            </div>
+                            <div class="image-carrusel_others-imgs">
+                                <div id="gallerycont1" class="image-carrusel_others-imgs_img1"><img src="/images/<%= sproduct.photo1%>" alt="">
+                                </div>
+                                <div  id="gallerycont2" class="image-carrusel_others-imgs_img2"><img src="/images/<%= sproduct.photo2%>" alt="">
+                                </div>
+                                <div id="gallerycont3" class="image-carrusel_others-imgs_img3"><img src="/images/<%= sproduct.photo3%>" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+
+
+
+
+                    <div class="product-detail_buy-data">
+                        <div class="product-detail_product-info">
+                            <span class="product-detail_product-name_title"><%= sproduct.name%></span>
+                                <p class="product-detail_price">
+                                    $<%= sproduct.price%>
+                                </p>
+                                <span class="product-detail_discount">
+                                <% if(sproduct.discount == "true"){ %> 
+                                <%= sproduct.discountAply%>% OFF
+                                <%}%>  
+                            </span>
+                            <span class="product-detail_pay-methods">
+                                <i class="fas fa-credit-card"></i>
+                                Hasta 6 cuotas sin interés
+                            </span><br>
+                            <% if(sproduct.shipping == true){ %>
+                                <p class="product-detail_pay-methods">
+                                   <i class="fas fa-shipping-fast"></i>
+                                    Envio Gratis
+                                </p>
+
+                            <%}%>
+                        </div>
+
+                        <div class="product-detail_buy-data_button-container">
+                            <a href="/cart"><button class="button_product-detail_add">Añadir al
+                                    Carro</button></a>
+                            <a href="/cart"><button class="button_product-detail_buy">Comprar</button></a>
+                        </div>
+
+                        <div class="favourites-container">
+                            <div class="favourites">
+                                <i class="far fa-heart" id="fav"></i> <a href=""> Añadir a Favoritos</a>
+                            </div>
+                        </div>
+
+                        <div class="product-detail_buy-data-general-info">
+                            <div>
+                                <div><i class="fas fa-shipping-fast"></i></div><span>Envíos a todo el Pais</span>
+                            </div>
+                            <div>
+                                <div><i class="fas fa-store-alt"></i></div><span>Retiro en Sucursal (Microcento
+                                    -CABA)</span>
+                            </div>
+                            <div>
+                                <div><i class="fas fa-shield-alt"></i></div><span>Producto con Garantía</span>
+                            </div>
+                            <div>
+                                <div><i class="fas fa-check"></i></div><span>Stock Disponible</span>
+                            </div>
+                            <div>
+                                <div><i class="fas fa-undo"></i></div><span>Devolución Gratis (tenés 30 dias desde
+                                    recibido)</span>
+                            </div>
+                            <i class="fa fa-heart" id="product-detail_favoutite-item"></i>
+                        </div>
+                        <!-- <div class="product-detail_buy-data-shipping-cost">
+                            <div class="product-detail_cart_shipp-container">
+                                    <p>Calcula el costo de tu Envío</p>
+                                    <input id="pd-post-code" placeholder="Ingresa tu Código Postal">
+                                    <button class="product-detail_button_calculate-shipping-cost">Calcular</button>
+                                    <span>
+                                        Su envío tiene un costo de $1.987
+                                    </span> 
+                            </div>
+                        </div> -->
+                       
+                    </div>
+                
+                              
+
+                </section>
+
+                            <% if(locals.session){ %>
+                                <% if(locals.session.userClass !== "Cliente"){ %>
+                            <form class="produt-delete_form" method="POST" action="/product-detail/<%=sproduct.id %>?_method=DELETE"_method=DELETE">
+                                    <button class="product-detail_product-delete" value="submit">
+                                        <i class="fas fa-trash-alt" id="delete-product-trash"></i>
+                                        Eliminar Producto
+                                    </button>
+                            </form>
+                                <%}%>
+                            <%}%>
+
+                <div class="product-detail_section_slider-container">
+                    <h5 class="section_container-title">Productos Relacionados</h5>
+                    <div class="product-detail_slider-section">
+                        <article class="product-detail_product_item" id="p-item">
+                            <a class="poduct-detail_main-link" href="">
+                                <img class="product-detail_item-img" src="images/teclados.jpeg" alt="item name">
+                                <div class="product_detail-main_article">
+                                    <p class="product_detail-main_article-name">Nombre del Producto</p>
+                                    <p class="price">$ 12.345</p>
+                                    <p class="discount">20% off</p>
+                                    <h4 class="description">Descripcion del Producto</h4>
+                                </div>
+                            </a>
+                        </article>
+                        <article class="product-detail_product_item" id="p-item">
+                            <a class="poduct-detail_main-link" href="">
+                                <img class="product-detail_item-img" src="images/mouse.jpeg" alt="item name">
+                                <div class="product_detail-main_article">
+                                    <p class="product_detail-main_article-name">Nombre del Producto</p>
+                                    <p class="price">$ 12.345</p>
+                                    <p class="discount">20% off</p>
+                                    <h4 class="description">Descripcion del Producto</h4>
+                                </div>
+                            </a>
+                        </article>
+                        <article class="product-detail_product_item" id="p-item">
+                            <a class="poduct-detail_main-link" href="">
+                                <img class="product-detail_item-img" src="images/parlantes.jpeg" alt="item name">
+                                <div class="product_detail-main_article">
+                                    <p class="product_detail-main_article-name">Nombre del Producto</p>
+                                    <p class="price">$ 12.345</p>
+                                    <p class="discount">20% off</p>
+                                    <h4 class="description">Descripcion del Producto</h4>
+                                </div>
+                            </a>
+                        </article>
+                        <article class="product-detail_product_item" id="p-item">
+                            <a class="poduct-detail_main-link" href="">
+                                <img class="product-detail_item-img" src="images/sillasgamer.jpeg" alt="item name">
+                                <div class="product_detail-main_article">
+                                    <p class="product_detail-main_article-name">Nombre del Producto</p>
+                                    <p class="price">$ 12.345</p>
+                                    <p class="discount">20% off</p>
+                                    <h4 class="description">Descripcion del Producto</h4>
+                                </div>
+                            </a>
+                        </article>
+                    </div>
+                </div>
+                <div class="product-detail_detail-complete">
+                    <div class="detail-complete_text">
+                        <span class="detail-text">Detalle del Producto</span>
+                        <p><%= sproduct.description%></p>
+                       
+                    </div>
+                </div>
+            </main>
+            <%- include('./partial/footer')%>
+            <script src="/events/gallery.js"></script>
+    </body>
+</html>

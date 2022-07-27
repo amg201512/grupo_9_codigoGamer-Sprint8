@@ -1,0 +1,124 @@
+<header>
+
+
+  <div class="top-bar">
+    <div class="nav-menu">
+      <ul>
+          <div class="top-bar_list" id="social-media">
+        <li>
+          <a href="#">
+            <i class="fab fa-facebook"> </i>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fab fa-twitter"> </i>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fab fa-instagram"> </i>
+          </a>
+        </li>
+      </div>  
+        <div class="top-bar_list">
+          <% if(!locals.session){ %>
+          <li>
+          <a href="../user-login">
+            Ingresar / Registrarse
+            <i class="fas fa-user"> </i>
+          </a>
+        </li>
+        <%}%>
+        <% if(locals.session){ %>
+          <% if(session.userType !== "Cliente"){ %>
+        <li>
+          <a href="../users">
+            Ver Usuarios
+            <i class="fas fa-users"></i>
+          </a>
+        </li>
+        
+        <%}%>
+        <%}%>
+        </div>
+      </ul>
+      <% if(locals.session){     %>
+       <div class="topbar-user_main-container">
+          <div class="top-bar_user-profile_avatar-container">
+            <a href="../user-profile/<%=session.id%>">
+            <img class="top-bar_user-profile_avatar" src="/images/users/<%= session.avatar%>">
+            </a>
+          </div>
+          <div class="top-bar_user-profile_data-container">
+            <p class="top-bar_user-profile-info"><%=session.name%></p>
+          </div>
+          <ul class="bell-alerts">
+            <li>
+              <a href="#" >
+                <i class="fas fa-bell"> </i>
+              </a>
+            </li>
+          </ul>
+          <%}%>
+       </div>
+      </div>
+  </div>
+
+  
+
+  <div class="top-header">
+    <div class="logo">
+      <a href="/home">
+        <img src="/images/codigo-gamer-logo.jpeg.png" />
+      </a>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-list">
+        <div class="nav-section-list-links">
+          <div class="nav-section_item">
+            <a href="/home"> HOME </a>
+          </div>
+          <div class="nav-section_item">
+            <a href="../productsList"> TIENDA </a>
+          </div>
+          <div class="nav-section_item">
+            <a href="#"> OFERTAS </a>
+          </div>
+          <div class="nav-section_item">
+            <a href="/contact"> CONTACTO </a>
+          </div>
+        </div>
+        <div class="nav-section-list-icons">
+          <div class="nav-section_item">
+            <a href="#">
+              <i class="fas fa-heart"> </i>
+            </a>
+          </div>
+          <div class="nav-section_item-search" id="search-bar">
+            <input
+              type="text"
+              class="serch-input"
+              placeholder="Buscar aquí..."
+              required
+            />
+            <div class="search-btn"><i class="fas fa-search icon"></i></div>
+          </div>
+          <div class="nav-section_item">
+            <a href="/cart">
+              <i class="fas fa-shopping-cart"> </i>
+            </a>
+          </div>
+        </div>
+        <div class="burger-menu">
+          <i class="fa fa-bars burger"> </i>
+        </div>
+      </div>
+    </div>
+    
+
+  </div>
+
+  
+</header>
